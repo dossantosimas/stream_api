@@ -11,11 +11,12 @@ import json
 
 db_session = shared_session
 
-broker_address = "127.0.0.1"
+broker_address = "link-lenovo-prueba"
 port = 1883
 topic = "ibisa/stream" 
 
 def on_connect(client, userdata, flags, rc):
+    print('SE CONECTO AL BROKER')
     if rc == 0:
         print("Conexión exitosa al servidor MQTT")
     else:
@@ -25,6 +26,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 
 client.connect(broker_address, port)
+client.loop_start()
 
 
 app = Flask(__name__)
@@ -181,5 +183,6 @@ def token():
 
 
 if __name__ == "__main__":
-    print('RUN API...')
-    app.run()
+    print('RUN API...')  
+    app.run(host='0.0.0.0')
+    

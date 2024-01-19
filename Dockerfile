@@ -1,5 +1,7 @@
 FROM python:3.10.13-slim
 
+EXPOSE 5000
+
 RUN apt-get update && \
     apt-get install gcc python3-dev musl-dev libpq-dev -y && \
     apt-get clean
